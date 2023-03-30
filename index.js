@@ -83,8 +83,9 @@ app.put('/producto/:id', (req,res) =>{
 
 app.delete('/producto/:id', (req,res) =>{
     const id=req.params.id ?? 0;
-    let sql ="Delete From Producto Where id = ?";
-    con.query(sql,[id], (err,result) =>{
+    
+    let sqlDelete="Delete From Producto Where id = ?";
+    con.query(sqlDelete,[id], (err,result) =>{
         if(err){
             throw err;
         } else {
