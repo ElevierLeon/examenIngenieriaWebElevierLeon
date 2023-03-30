@@ -1,4 +1,21 @@
 {
+  "name": "examenIngenieriaWebElevierLeon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElevierLeon/examenIngenieriaWebElevierLeon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElevierLeon/eexamenIngenieriaWebElevierLeon.git/issues"
+  },
+  "homepage": "https://github.com/ElevierLeon/examenIngenieriaWebElevierLeon.git#readme",
   "dependencies": {
     "express": "^4.18.2",
     "mysql": "^2.18.1"
