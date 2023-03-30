@@ -20,7 +20,7 @@ con.connect(function (err){
 
 
 app.get('/producto', (req,res) => {
-    con.query("Select * from Producto",
+    con.query("Select * from Producto2",
         function(err,result){
             if(err){
                 throw err;
@@ -33,7 +33,7 @@ app.get('/producto', (req,res) => {
 
 app.get('/producto/:id', (req,res)=>{
     let id=req.params.id ?? 0;
-    con.query("Select * from Producto where id=?", [id],
+    con.query("Select * from Producto2 where id=?", [id],
     function(err,result){
         if(err){
             throw err;
@@ -49,12 +49,14 @@ app.get('/producto/:id', (req,res)=>{
 
 
 app.post('/producto', (req,res)=>{
-    const marca=req.body.marca;
+    const descripcion=req.body.descripcion;
     const nombre=req.body.nombre;
     const precio=req.body.precio;
+    const cantidad=req.body.cantidad;
+    const creado_en=req.body.creado_en;
     
-    let sql="Insert into Producto (marca,nombre,precio) Values (?,?,?)"
-    con.query(sql,[marca,nombre,precio],(err,result) =>{
+    let sql="Insert into Producto2 (nombre,descripcion,precio,cantidad,creado_en) Values (?,?,?,?,?)"
+    con.query(sql,[nombre,descripcion,precio,cantidad,creado_en],(err,result) =>{
         if(err){
             throw err;
         } else {
@@ -67,12 +69,14 @@ app.post('/producto', (req,res)=>{
 
 app.put('/producto/:id', (req,res) =>{
     let id=req.params.id ?? 0;
-    const marca=req.body.marca;
+    const descripcion=req.body.descripcion;
     const nombre=req.body.nombre;
     const precio=req.body.precio;
+    const cantidad=req.body.cantidad;
+    const creado_en=req.body.creado_en;
 
-    let sql="Update Producto set marca = ?, nombre = ?, precio = ? where id = ?";
-    con.query(sql,[marca,nombre,precio,id],(err,result)=>{
+    let sql="Update Producto2 set nombre = ?,descripcion = ?,precio = ?,cantidad = ?,creado_en = ? where id = ?";
+    con.query(sql,[nombre,descripcion,precio,cantidad,creado_en,id],(err,result)=>{
         if(err){
             throw err;
         } else {
@@ -84,7 +88,7 @@ app.put('/producto/:id', (req,res) =>{
 app.delete('/producto/:id', (req,res) =>{
     const id=req.params.id ?? 0;
     
-    let sqlDelete="Delete From Producto Where id = ?";
+    let sqlDelete="Delete From Producto2 Where id = ?";
     con.query(sqlDelete,[id], (err,result) =>{
         if(err){
             throw err;
