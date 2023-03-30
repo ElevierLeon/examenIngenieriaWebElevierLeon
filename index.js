@@ -47,6 +47,53 @@ app.get('/producto/:id', (req,res)=>{
     });
 } );
 
+
+app.post('/producto', (req,res)=>{
+    const marca=req.body.marca;
+    const nombre=req.body.nombre;
+    const precio=req.body.precio;
+    
+    let sql="Insert into Producto (marca,nombre,precio) Values (?,?,?)"
+    con.query(sql,[marca,nombre,precio],(err,result) =>{
+        if(err){
+            throw err;
+        } else {
+            res.status(200).json({});
+        }
+    });
+} );
+
+
+
+app.put('/producto/:id', (req,res) =>{
+    let id=req.params.id ?? 0;
+    const marca=req.body.marca;
+    const nombre=req.body.nombre;
+    const precio=req.body.precio;
+
+    let sql="Update Producto set marca = ?, nombre = ?, precio = ? where id = ?";
+    con.query(sql,[marca,nombre,precio,id],(err,result)=>{
+        if(err){
+            throw err;
+        } else {
+            res.status(200).json({});
+        }
+    });
+});
+
+app.delete('/producto/:id', (req,res) =>{
+    const id=req.params.id ?? 0;
+    let sql ="Delete From Producto Where id = ?";
+    con.query(sql,[id], (err,result) =>{
+        if(err){
+            throw err;
+        } else {
+            res.status(200).json({});
+        }
+    });
+});
+
+
 app.listen(port,() => {
     console.log(`Example app listening on port ${port}`);
 });
